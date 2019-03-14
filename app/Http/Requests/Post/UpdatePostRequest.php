@@ -13,7 +13,7 @@ class UpdatePostRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,9 +22,18 @@ class UpdatePostRequest extends FormRequest
      * @return array
      */
     public function rules()
-    {
-        return [
-            //
+    {   
+        return[
+            'title'=>'required|min:3|unique:posts,title,'.$this->post['id'],
+            'description'=>'required|min:10'
         ];
+    }
+    public function message()
+    {
+        return ['title.required'=>"title is short",
+        'title.unique'=>"title is found ...",
+        'description.required'=>"must insert description",
+        'description.min'=>"description is short"
+    ];
     }
 }

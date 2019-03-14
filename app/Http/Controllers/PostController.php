@@ -6,7 +6,7 @@ use App\Post;
 use App\User;
 use Illuminate\Http\Request;
 use App; 
-use App\Http\Requests\Post\StorePostRequest;
+use App\Http\Requests\Post\UpdatePostRequest;
 class PostController extends Controller
 {
     /**
@@ -79,11 +79,10 @@ class PostController extends Controller
      * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(StorePostRequest $request, $id)
+    public function update(UpdatePostRequest $request, Post $post)
     {  
-       $old=Post::find($id);
     
-       $old->update($request->all());
+       $post->update($request->all());
        return redirect()->route('posts.index');
 
        // $post->update->where('id',request()->all()->id)(request()->all());
