@@ -12,6 +12,7 @@
       <th scope="col">descriptiont</th>
       <th scope="col">Posted By</th>
       <th scope="col">Created At</th>
+      <th scope="col">Slug</th>
       <th scope="col">Action</th>
     </tr>
   </thead>
@@ -23,6 +24,7 @@
         <td>{{$post->description}}</td>
         <td>{{$post->user->name}}</td>
         <td>{{$post->created_at}}</td>
+        <td>{{$post->slug}}</td>
         <td>
             <a  class="btn btn-info" href="/posts/create"> View </a>
             <a  class="btn btn-primary" href="/posts/{{$post->id}}/edit"> Edit </a>
@@ -35,4 +37,4 @@
 </table>
 
 
-endsection
+@endsection

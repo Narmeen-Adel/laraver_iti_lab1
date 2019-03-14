@@ -6,7 +6,9 @@ use App\Post;
 use App\User;
 use Illuminate\Http\Request;
 use App; 
+use App\Http\Requests\Post\StorePostRequest;
 use App\Http\Requests\Post\UpdatePostRequest;
+use \Cviebrock\EloquentSluggable\Services\SlugService;
 class PostController extends Controller
 {
     /**
@@ -82,7 +84,9 @@ class PostController extends Controller
     public function update(UpdatePostRequest $request, Post $post)
     {  
     
-       $post->update($request->all());
+       $slug= SlugService::createSlug(Post::class, 'slug', $request->title);
+       
+       $post->update([$request->all(),'slug'=>$slug]);
        return redirect()->route('posts.index');
 
        // $post->update->where('id',request()->all()->id)(request()->all());

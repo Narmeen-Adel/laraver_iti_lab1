@@ -25,7 +25,8 @@ class StorePostRequest extends FormRequest
     {
         return[
             'title'=>'min:3|required|unique:posts',
-            'description'=>'required|min:10'
+            'description'=>'required|min:10',
+            'user_id'=>'exists:users,id'
         ];
     }
     public function message()
@@ -33,7 +34,8 @@ class StorePostRequest extends FormRequest
         return ['title.required'=>"title is short",
         'title.unique'=>"title is found ...",
         'description.required'=>"must insert description",
-        'description.min'=>"description is short"
+        'description.min'=>"description is short",
+        'user_id.exists'=>"user not available "             
     ];
     }
 }
