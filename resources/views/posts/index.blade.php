@@ -25,7 +25,7 @@
         <td>{{$post->created_at}}</td>
         <td>
             <a  class="btn btn-info" href="/posts/create"> View </a>
-            <a  class="btn btn-primary" href="/posts/create"> Edit </a>
+            <a  class="btn btn-primary" href="/posts/{{$post->id}}/edit"> Edit </a>
             <a  class="btn btn-danger" href="/posts/create"> Delete </a>
         </td>
         </tr>

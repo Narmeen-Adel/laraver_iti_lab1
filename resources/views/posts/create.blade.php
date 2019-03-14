@@ -2,7 +2,7 @@
 @section('content')
 
 
-<form method="POST"action="/posts"> @csrf
+<form method="POST"action="{{posts.store}}}"> @csrf
   <div class="form-group">
     <label for="exampleInputEmail1">title</label>
     <input name="title" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">

@@ -28,7 +28,6 @@ class PostController extends Controller
     { 
        return view('posts.create',['users' =>User::all()]);
 
-        //
     }
 
     /**
@@ -65,7 +64,7 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        //
+    return view('posts.edit', ['post' => $post,'users' =>User::all()]);
     }
 
     /**
@@ -75,8 +74,14 @@ class PostController extends Controller
      * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Post $post)
-    {
+    public function update(Request $request, $id)
+    {  
+       $old=Post::find($id);
+    
+       $old->update($request->all());
+       return redirect()->route('posts.index');
+
+       // $post->update->where('id',request()->all()->id)(request()->all());
         
     }
 
