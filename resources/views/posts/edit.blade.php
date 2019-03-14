@@ -5,6 +5,17 @@
 <form method="POST" action="{{route('posts.update',$post->id)}}"> 
 @csrf
 @method('PUT')
+<h1>Create Post</h1>
+
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
   <div class="form-group">
     <label for="exampleInputEmail1">title</label>
     <input  value="{{$post->title}}" name="title" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">

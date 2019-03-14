@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use App\Post;
 use App\User;
 use Illuminate\Http\Request;
-use App;
+use App; 
+use App\Http\Requests\Post\StorePostRequest;
 class PostController extends Controller
 {
     /**
@@ -36,10 +37,14 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store()
+    public function store(StorePostRequest $request)
     {
-    
-        Post::create(request()->all());
+        // $request->validate([
+
+        // ])
+        // $validated = $request->validated();
+       
+        Post::create($request->all());
         return redirect()->route('posts.index');
        //Post::create(['title' => $request->title , 'description' => $request->decription,'user_id'=>$request->user_id]);
         //
@@ -74,7 +79,7 @@ class PostController extends Controller
      * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StorePostRequest $request, $id)
     {  
        $old=Post::find($id);
     
