@@ -25,16 +25,24 @@
         <td>{{$post->user->name}}</td>
         <td>{{$post->created_at}}</td>
         <td>{{$post->slug}}</td>
+
+       
         <td>
-            <a  class="btn btn-info" href="/posts/create"> View </a>
-            <a  class="btn btn-primary" href="/posts/{{$post->id}}/edit"> Edit </a>
-            <a  class="btn btn-danger" href="/posts/create"> Delete </a>
+            <a  class="btn btn-info" href="{{route('posts.show',$post->id)}}"> View </a>
+            <a  class="btn btn-primary" href="{{route('posts.edit',$post->id)}}"> Edit </a>
+            <form id="delete_form" action="{{route('posts.destroy',$post->id)}}" method="POST"> 
+              @csrf
+              @method('DELETE')
+              <button onclick="return confirm('you want to delete')" type="submit"  form="delete_form" class="btn btn-danger">Delete</button>
+           </form>
+          
         </td>
         </tr>
       @endforeach
 
   </tbody>
 </table>
+{{ $posts->links()}}
 
 
 @endsection

@@ -18,7 +18,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts =  Post::all();
+        $posts =  Post::paginate(3);
         return view('posts.index', ['posts' => $posts]);        //
     }
 
@@ -60,7 +60,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        //
+        return view('posts.show',['post'=>$post,'user'=>User::find($post->id)]);
     }
 
     /**
@@ -86,7 +86,8 @@ class PostController extends Controller
     
        $slug= SlugService::createSlug(Post::class, 'slug', $request->title);
        
-       $post->update([$request->all(),'slug'=>$slug]);
+       $post->update(['title'=>$request->title,'description'=>$request->description,'slug'=>$slug]);
+        // $post->update($request->all());
        return redirect()->route('posts.index');
 
        // $post->update->where('id',request()->all()->id)(request()->all());
@@ -101,6 +102,8 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+       
+        $post->delete();
+        return redirect()->route('posts.index');
     }
 }
