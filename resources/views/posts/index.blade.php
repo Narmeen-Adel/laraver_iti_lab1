@@ -23,7 +23,7 @@
         <td>{{$post->title}}</td>
         <td>{{$post->description}}</td>
         <td>{{$post->user->name}}</td>
-        <td>{{$post->created_at}}</td>
+        <td>{{$post->created_at->toDateString()}}</td>
         <td>{{$post->slug}}</td>
 
        

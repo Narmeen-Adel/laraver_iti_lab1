@@ -23,7 +23,7 @@ public function sluggable()
     return [
         'slug' => [
             'source' => 'title',
-            'onUpdate '  => true
+            // 'onUpdate '  => true
         ]
         
     ];
