@@ -11,18 +11,16 @@ use App\Http\Resources\Api\UserResource;
 class PostsController extends Controller
 {
     public function index()
-    {
-       // $posts = Post::paginate(3);
-       // return PostResource::collection($posts);
-    //    return Post::all();
+     {
+    //    $posts = Post::paginate(3);
+    //    return PostResource::collection($posts);
 
 
-    $posts = Post::published()->get(); // one query
 
-    $users = array_map(function($post) {
-        // Produces a query on the author model
-        return $post->user->name;
-    }, $posts);
+       return Post::with('user')->paginate(3);
+
+
+    
     }
     public function show($post)
     {
